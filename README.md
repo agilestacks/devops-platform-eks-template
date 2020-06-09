@@ -18,6 +18,8 @@ Prerequisites:
 
 - Mac OS or Linux, Docker
 - EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
+- `current-context` in your Kubeconfig (~/.kube/config) must be set to your EKS. `eksctl` sets it automatically after cluster provisioning is finished
+- `AWS_PROFILE` environment variable must be set. Otherwise `default` profile will be used.
 
 1. Download & Install the Automation Hub binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox)
 2. (Optional) Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`. You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required in order to deploy stacks.
