@@ -122,6 +122,7 @@ init: $(TF_DATA_DIR)
 		./$(CLOUD_KIND)
 
 fetch:
+	rm -rf charts/traefik
 	@mkdir -p $(HELM_HOME) charts
 	$(helm) init --client-only --upgrade --wait
 	$(helm) fetch \
