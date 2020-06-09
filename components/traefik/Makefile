@@ -216,7 +216,7 @@ wait_dns:
 	$(eval timeout := $(shell echo "`date +%s` + $(WAIT_TIMEOUT)" | bc ))
 	@ echo "Waiting $(DOMAIN_NAME) to resolve"
 	@ while [ "`date +%s`" -le "$(timeout)" ]; do \
-		actual=`nslookup "$(DOMAIN_NAME)" > /dev/null; echo $$?`; \
+		actual=`dig "$(DOMAIN_NAME)" > /dev/null; echo $$?`; \
 		if test "$$actual" = "0"; then \
 			echo "Done!"; \
 			exit 0; \
