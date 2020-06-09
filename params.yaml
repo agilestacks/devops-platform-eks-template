@@ -1,0 +1,64 @@
+---
+parameters:
+  - name: cloud
+    brief: Cloud
+    kind: user
+    parameters:
+      - name: kind
+        value: aws
+      - name: region
+        fromEnv: AWS_REGION
+      - name: availabilityZone
+        brief: Availability zone
+        value: ${cloud.region}a
+      - name: sshKey
+        fromEnv: BASE_DOMAIN
+        brief: SSH key name
+  - name: dns
+    brief: DNS
+    kind: user
+    parameters:
+      - name: name
+        brief: DNS name
+        fromEnv: PLATFORM_NAME
+      - name: baseDomain
+        brief: DNS base domain
+        fromEnv: BASE_DOMAIN
+        default: superhub.io
+      - name: domain
+        value: ${dns.name}.${dns.baseDomain}
+  - name: component.storage-class
+    parameters:
+      - name: name
+        value: default
+  - name: terraform.bucket
+    brief: Terraform state location
+    parameters:
+      - name: name
+        fromEnv: STATE_BUCKET
+      - name: region
+        fromEnv: STATE_REGION
+  - name: component.ingress
+    parameters:
+      - name: dashboard
+        value: 'true'
+      - name: ssoUrlPrefix
+        value: apps
+      - name: urlPrefix
+        value: app
+  - name: component.postgresql
+    parameters:
+      - name: user
+        value: postgresql
+      - name: password
+        value: postgresql
+      - name: database
+        value: postgresql
+  - name: component.prometheus
+    parameters:
+      - name: oauth.enabled
+        value: false
+  - name: component.harbor
+    parameters:
+      - name: password
+        value: Harbor12345

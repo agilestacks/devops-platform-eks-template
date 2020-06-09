@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: example-eks
+  region: eu-north-1
+
+nodeGroups:
+  - name: workers
+    labels: { role: workers }
+    instanceType: m5.xlarge
+    desiredCapacity: 2
+    iam:
+      withAddonPolicies:
+        externalDNS: true
+        certManager: true

@@ -1,0 +1,8 @@
+provider: aws
+# https://github.com/kubernetes-sigs/external-dns/issues/262
+txtPrefix: "meta."
+aws:
+  zoneType: "public"
+  zoneTags: [
+    "superhub.io/stack/${dns.domain}"
+  ]
