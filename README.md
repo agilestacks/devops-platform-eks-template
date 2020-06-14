@@ -25,7 +25,7 @@ The template deploys and configures:
 2. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`. You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.
 3. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ext platforms` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones are not:
 
-    ```bash
+    ```console
     hub ext platforms
 
     List of Agile Stacks platform configurations:
@@ -44,7 +44,7 @@ The template deploys and configures:
 
 4. Run `hub configure -p <kube context name>` to create Agile Stacks configuration for the given cluster. It is required to deploy a stack template using `hub ext deploy` Example:
 
-    ```bash
+    ```console
     hub configure -p user@dev-cluster.eu-north-1.eksctl.io
 
     Initial configuration for Kubernetes cluster user@dev-cluster.eu-north-1.eksctl.io has been created
