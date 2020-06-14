@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUBBLES="https://api.app.vou8.dev.superhub.io/dns"
+BUBBLES="https://api.app.vou9.dev.superhub.io/dns"
 terraform="terraform-v0.12"
 
 if [[ ! -f .env ]]; then
@@ -12,10 +12,10 @@ source .env
 
 DOMAIN_NAME="$PLATFORM_NAME.$BASE_DOMAIN"
 
-echo -e "\nRunning some Terraform to create/refresh:"
-echo -e "* DNS Zone for platform: $DOMAIN_NAME"
-echo -e "* S3 bucket where Terraform and Automation HUB will store their states: agilestacks.$DOMAIN_NAME"
-echo -e "\n------------------------------------------------------------------------"
+echo "Running some Terraform to create/refresh:"
+echo "* DNS Zone for platform: $DOMAIN_NAME"
+echo "* S3 bucket where Terraform and Automation HUB will store their states: agilestacks.$DOMAIN_NAME"
+echo
 export TF_VAR_region="$AWS_REGION"
 export TF_VAR_domain_name="$DOMAIN_NAME"
 export TF_LOG=
@@ -28,18 +28,18 @@ TF_PLAN=".terraform/$DOMAIN_NAME.tfplan"
 (cd "$(pwd)"/.hub/cloud && $terraform apply "$TF_STATE" -input=false -no-color "$TF_PLAN")
 NS=$(cd "$(pwd)"/.hub/cloud && $terraform output "$TF_STATE" -no-color -json name_servers)
 
-echo -e "\n------------------------------------------------------------------------"
-echo -e "\nDelegating (or updating delegation) $DOMAIN_NAME domain management to \nyour hosted zone..."
+echo
+echo "Delegating (or updating delegation) $DOMAIN_NAME domain management to your hosted zone..."
 CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT \
       "$BUBBLES"/"$DOMAIN_NAME" \
       -H 'Content-Type: application/json;charset=UTF-8' \
       -d "{\"key\": \"$DOMAIN_KEY\",\"nameservers\": $NS}")
 
 if [[ $CODE = 202 ]]; then
-
+  echo
   echo "Successful"
 else
   echo "Something went wrong. Please retry!"
   exit 1
 fi
-echo -e "\n------------------------------------------------------------------------"
+echo

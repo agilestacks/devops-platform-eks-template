@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: example-cluster
+  name: dev-cluster
   region: eu-north-1
 
 nodeGroups:

@@ -2,11 +2,13 @@
 
 usage() {
 cat << EOF
+
 Undeploys Stack Template
 Usage: $(basename "$0") [-c]
 Parameters:
     -c --components    List of components to deploy
     -o --offset        Deploy starting with the given component
+
 EOF
 }
 
@@ -17,6 +19,9 @@ while [ "$1" != "" ]; do
                             ;;
         -o | --offset )         shift
                             OFFSET="$1"
+                            ;;
+        -h | --help )       usage
+                            exit
                             ;;
         * )                 usage
                             exit 1
@@ -30,21 +35,11 @@ if [[ ! -f .env ]]; then
 fi
 source .env
 
-echo "  ____                        _           _      _       ";
-echo " / ___| _   _ _ __   ___ _ __| |__  _   _| |__  (_) ___  ";
-echo " \___ \| | | | '_ \ / _ \ '__| '_ \| | | | '_ \ | |/ _ \ ";
-echo "  ___) | |_| | |_) |  __/ |  | | | | |_| | |_) || | (_) |";
-echo " |____/ \__,_| .__/ \___|_|  |_| |_|\__,_|_.__(_)_|\___/ ";
-echo "             |_|                                         ";
-echo -e "\n------------------------------------------------------------------------"
-echo -e "\nUndeploying platform : $PLATFORM_NAME.$BASE_DOMAIN"
-echo -e "\n------------------------------------------------------------------------"
+echo
+echo "Undeploying platform : $PLATFORM_NAME.$BASE_DOMAIN"
+echo
 
 hub ext cloud
-
-hub ext kubeconfig
-KUBECONFIG="$(pwd)/kubeconfig"
-export KUBECONFIG
 
 make elaborate
 if [[ -n "$COMPONENTS" ]]; then
