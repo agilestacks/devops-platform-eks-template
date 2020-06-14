@@ -1,6 +1,6 @@
 # Agile Stacks DevOps platform on EKS
 
-`Agile Stacks DevOps platform on EKS` is a Stack Template that deploys to existing EKS cluster essential pre-configured tools for ingress, DNS, TLS management and monitoring.
+`Agile Stacks DevOps platform on EKS` is a Stack Template that deploys to existing EKS cluster essential pre-configured tools for ingress, DNS, TLS management, and monitoring.
 
 The template deploys and configures:
 
@@ -14,12 +14,12 @@ The template deploys and configures:
 
 ## Quick Start
 
-Prerequisites:
+### Prerequisites
 
 - Mac OS or Linux, Docker
-- EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
+- EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision the EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
 
-Steps to deploy:
+### Steps to deploy Agile Stacks template
 
 1. Download & Install the Automation Hub binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `cd` into template directory.
 2. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`. You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.
@@ -51,15 +51,19 @@ Steps to deploy:
 
     Agile Stacks platform name:   dusty-irving-44.dev.superhub.io
     Configuration file location:  /Users/oginskis/demo/devops-platfrom-eks-template/.hub/env/dusty-irving-44.dev.superhub.io.env
-    Please review configuration file of the platform and change settings such as AWS profile or Region if necessary!
+    Please review the configuration file of the platform and change settings such as AWS profile or Region if necessary!
 
     To apply environment for dusty-irving-44.dev.superhub.io run the following:
     source .env
     ```
 
-    NOTE: `dusty-irving-44.dev.superhub.io` is randomly generated name of your Agile Stacks platform. In the meantime it will become top level domain for all the components (from the stack template) that require DNS (such as Traefik, Prometheus, etc.)
-
-    If you want to switch to another Agile Stacks configuration run `hub configure -p <Agile Stacks configuration name>`
+    NOTE: `dusty-irving-44.dev.superhub.io` is a randomly generated name of your Agile Stacks platform. In the meantime, it will become a top-level domain for all the components (from the stack template) that require DNS (such as Traefik, Prometheus, etc.)
 
 5. Run `hub ext deploy` to deploy the stack template
 6. Run `hub ext undeploy` to undeploy the stack template
+
+### Usefule features
+
+If you want to switch to another Agile Stacks configuration run `hub configure -p <Agile Stacks configuration name>`
+
+To delete existing configuration run `hub configure -p <Agile Stacks configuration name> -d`
