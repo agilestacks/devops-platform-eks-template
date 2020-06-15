@@ -23,14 +23,14 @@ The template deploys and configures:
 
 1. Download & Install the Automation Hub binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `git clone` and `cd` into the template directory.
 2. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`. You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.
-3. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ext platforms` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones (from your local Kubeconfig) are not:
+3. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ls` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones (from your local Kubeconfig) are not:
 
     ```console
     hub ext platforms
 
     List of Agile Stacks platform configurations:
 
-    Kube context name                 ASI Platform name
+    Kube context name                 ASI Platform configuration name
 
     N/A Run hub configure -p <KUBE CONTEXT NAME> to add
 

@@ -35,7 +35,7 @@ fi
 echo
 echo "${bold}List of Agile Stacks platform configurations:${normal}"
 echo
-echo -e "Kube context name,ASI Platform name\n , \n$platforms" | \
+echo -e "Kube context name,ASI Platform configuration name\n , \n$platforms" | \
   sed 's/\t/,|,/g' | column -s ',' -t
 echo
 
