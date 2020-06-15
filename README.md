@@ -26,7 +26,7 @@ The template deploys and configures:
 3. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ls` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones (from your local Kubeconfig) are not:
 
     ```console
-    hub ext platforms
+    hub ls
 
     List of Agile Stacks platform configurations:
 
