@@ -39,41 +39,7 @@ components:
         remote: 'https://github.com/agilestacks/components.git'
         ref: master
         subDir: traefik
-  - name: prometheus
-    source:
-      dir: components/prometheus-operator
-      git:
-        remote: 'https://github.com/agilestacks/components.git'
-        ref: master
-        subDir: prometheus-operator
-  - name: istio
-    source:
-      dir: components/istio
-      git:
-        remote: 'https://github.com/agilestacks/components.git'
-        ref: master
-        subDir: istio
-  - name: harbor
-    source:
-      dir: components/harbor
-      git:
-        remote: 'https://github.com/agilestacks/components.git'
-        ref: master
-        subDir: harbor
-  - name: postgresql
-    source:
-      dir: components/postgresql
-      git:
-        remote: 'https://github.com/agilestacks/components.git'
-        ref: master
-        subDir: postgresql
-  - name: pgweb
-    source:
-      dir: components/pgweb
-      git:
-        remote: 'https://github.com/agilestacks/components.git'
-        ref: master
-        subDir: pgweb
+
 requires:
   - aws
 lifecycle:
@@ -86,19 +52,9 @@ lifecycle:
     - external-dns
     - cert-manager
     - traefik
-    - prometheus
-    - istio
-    - harbor
-    - postgresql
-    - pgweb
   mandatory:
     - tiller
     - storage-class
     - external-dns
     - cert-manager
     - traefik
-    - prometheus
-    - istio
-    - harbor
-    - postgresql
-    - pgweb
