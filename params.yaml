@@ -46,19 +46,3 @@ parameters:
         value: apps
       - name: urlPrefix
         value: app
-  - name: component.postgresql
-    parameters:
-      - name: user
-        value: postgresql
-      - name: password
-        value: postgresql
-      - name: database
-        value: postgresql
-  - name: component.prometheus
-    parameters:
-      - name: oauth.enabled
-        value: false
-  - name: component.harbor
-    parameters:
-      - name: password
-        value: Harbor12345

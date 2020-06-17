@@ -1,8 +1,5 @@
 #!/bin/bash
 
-bold=$(tput bold)
-normal=$(tput sgr0)
-
 usage() {
 cat << EOF
 
@@ -34,7 +31,7 @@ done
 
 if [[ ! -f .env ]]; then
   echo
-  echo "Configuration has not been found. Run hub ${bold}configure -p <platfrom name>${normal}"
+  echo "Configuration has not been found. Run hub configure -p <platfrom name>"
   exit 1
 fi
 # shellcheck disable=SC1091

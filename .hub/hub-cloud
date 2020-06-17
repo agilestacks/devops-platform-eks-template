@@ -1,14 +1,11 @@
 #!/bin/bash
 
-bold=$(tput bold)
-normal=$(tput sgr0)
-
 BUBBLES="https://api.agilestacks.io/dns"
 terraform="terraform-v0.12"
 
 if [[ ! -f .env ]]; then
   echo
-  echo "Configuration has not been found. Run hub ${bold}configure -p <platfrom name>${normal}"
+  echo "Configuration has not been found. Run hub configure -p <platfrom name>"
   exit 1
 fi
 # shellcheck disable=SC1091
