@@ -3,7 +3,7 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-BUBBLES="https://api.superhub.io/dns"
+BUBBLES="https://api.agilestacks.io/dns"
 terraform="terraform-v0.12"
 
 if [[ ! -f .env ]]; then
