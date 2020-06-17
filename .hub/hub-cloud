@@ -1,10 +1,14 @@
 #!/bin/bash
 
-BUBBLES="https://api.app.vou9.dev.superhub.io/dns"
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+BUBBLES="https://api.superhub.io/dns"
 terraform="terraform-v0.12"
 
 if [[ ! -f .env ]]; then
-  echo -e "\nConfiguration has not been found. Run 'hub configure'"
+  echo
+  echo "Configuration has not been found. Run hub ${bold}configure -p <platfrom name>${normal}"
   exit 1
 fi
 # shellcheck disable=SC1091
