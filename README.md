@@ -7,18 +7,20 @@ Additionally, we deploy a free randomly generated public platform DNS name in `d
 The template deploys and configures:
 
 * [**External DNS**](https://github.com/kubernetes-sigs/external-dns)
+    <!-- markdownlint-disable MD033 -->
+    <img src="external-dns.png" width="100">
 
     *ExternalDNS synchronizes exposed Kubernetes Services and Ingresses with DNS providers.*
 * [**Cert Manager**](https://github.com/jetstack/cert-manager)
 
+    <img src="cert-manager.png" width="100">
+
     *cert-manager is a Kubernetes add-on to automate the management and issuance of TLS certificates from various issuing sources.*
 * [**Traefik**](https://containo.us/traefik/)
 
+    <img src="traefik.logo.png" width="100">
+
     *Traefik is the leading open source reverse proxy and load balancer for HTTP and TCP-based applications that is easy, dynamic, automatic, fast, full-featured, production proven, provides metrics, and integrates with every major cluster technology.*
-<!-- markdownlint-disable MD033 -->
-<img src="external-dns.png" width="100">
-<img src="cert-manager.png" width="100">
-<img src="traefik.logo.png" width="100">
 
 ## Getting Started
 
@@ -29,7 +31,7 @@ The template deploys and configures:
 
 ### Steps to deploy Agile Stacks DevOps platform on EKS Stack Template
 
-1. Download & Install the Automation Hub binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `git clone` and `cd` into the template directory.
+1. Download & Install the Automation Hub CLI binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `git clone` and `cd` into the template directory. Install Hub CLI extensions using `hub extensions install`
 2. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`.
 
     *NOTE: You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.*
