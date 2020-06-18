@@ -28,6 +28,7 @@ The template deploys and configures:
 
 * Mac OS or Linux, Docker
 * EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision the EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
+* AWS CLI profile name with the credentials of the same AWS Cloud Account where the EKS cluster is provisioned must be set in `AWS_PROFILE` environment variable
 
 ### Steps to deploy Agile Stacks DevOps platform on EKS Stack Template
 
