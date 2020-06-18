@@ -1,2 +1,0 @@
-kiali:
-  prometheusAddr: http://prometheus-operator-prometheus.monitoring.svc.cluster.local:9090

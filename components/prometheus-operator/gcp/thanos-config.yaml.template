@@ -1,3 +1,0 @@
-type: GCS
-config:
-  bucket: "${component.bucket.name}"
