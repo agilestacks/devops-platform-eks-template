@@ -1,10 +1,10 @@
 # Agile Stacks [DevOps] platform on EKS
 
-**Agile Stacks DevOps platform on EKS** is a Stack Template that deploys to an existing EKS cluster essential pre-configured tools for **ingress**, **DNS**, and **TLS** management and eliminates the need to configure all the required tools manually.
+**Agile Stacks DevOps platform on EKS** is a Stack Template that deploys on an existing EKS cluster and provides essential Kubernetes tools for **ingress**, **DNS**, and **TLS** management, helping you to implement networking and security best practices.
 
-Additionally, we deploy a free randomly generated public platform DNS name in `devops.delivery` zone (example: `fluffy-dog-12.devops.delivery`), that enables platform users to access their services from the internet.
+In addition, the stack template creates a free auto-generated platform DNS name in `devops.delivery` zone (for example: `fluffy-dog-12.devops.delivery`), that enables platform users to access their services from the internet.
 
-The template deploys and configures:
+This template deploys and configures the following Kubernetes tools:
 
 * [**External DNS**](https://github.com/kubernetes-sigs/external-dns)
     <!-- markdownlint-disable MD033 -->
@@ -28,12 +28,14 @@ The template deploys and configures:
 
 * Mac OS or Linux, Docker
 * EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision the EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
+You can use the following command to create a cluster: `eksctl create cluster -f eks.cluster.yaml`
 * AWS CLI profile name with the credentials of the same AWS Cloud Account where the EKS cluster is provisioned must be set in `AWS_PROFILE` environment variable. More information: [AWS CLI access](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 
 ### Steps to deploy Agile Stacks DevOps platform on EKS Stack Template
 
 1. Download & Install the Automation Hub CLI binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `git clone` and `cd` into the template directory. Install Hub CLI extensions using `hub extensions install`
-2. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`.
+2. Run `toolbox` Docker image that contains all required tools for provisioning - AWS CLI, Terraform, kubectl, Helm, etc. Execute the following command from your workstation:
+`hub toolbox`
 
     *NOTE: You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.*
 
