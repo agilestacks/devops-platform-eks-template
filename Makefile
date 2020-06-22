@@ -2,13 +2,13 @@
 
 export PLATFORM_NAME  ?= dev
 export BASE_DOMAIN    ?= cloud-account-name.superhub.io
-export DOMAIN_NAME    ?= $(PLATFORM_NAME).$(BASE_DOMAIN)
 
 STATE_BUCKET ?= agilestacks.cloud-account-name.superhub.io
 STATE_REGION ?= us-east-2
 
 STACK_NAME ?= platform
 
+DOMAIN_NAME       := $(PLATFORM_NAME).$(BASE_DOMAIN)
 ELABORATE_FILE_FS := .hub/$(DOMAIN_NAME).yaml.elaborate
 ELABORATE_FILE_S3 := s3://$(STATE_BUCKET)/$(DOMAIN_NAME)/hub/$(STACK_NAME)/hub.elaborate
 ELABORATE_FILES   := $(ELABORATE_FILE_FS),$(ELABORATE_FILE_S3)
