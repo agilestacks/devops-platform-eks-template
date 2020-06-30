@@ -28,18 +28,36 @@ This template deploys and configures the following Kubernetes tools:
 
 * Mac OS or Linux, Docker
 * EKS Cluster with `externalDNS` and `certManager` add-on policies enabled. The easiest way to provision the EKS cluster is using [eksctl](https://eksctl.io) tool. Example EKS cluster configuration is [here](eks.cluster.yaml)
-You can use the following command to create a cluster: `eksctl create cluster -f eks.cluster.yaml`
 * AWS CLI profile name with the credentials of the same AWS Cloud Account where the EKS cluster is provisioned must be set in `AWS_PROFILE` environment variable. More information: [AWS CLI access](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 
 ### Steps to deploy Agile Stacks DevOps platform on EKS Stack Template
 
-1. Download & Install the Automation Hub CLI binary. Instructions are available here: [HUB CLI](https://docs.agilestacks.com/article/zrban5vpb5-install-toolbox). `git clone` and `cd` into the template directory. Install Hub CLI extensions using `hub extensions install`
-2. Run `toolbox` Docker image that contains all required tools for provisioning - AWS CLI, Terraform, kubectl, Helm, etc. Execute the following command from your workstation:
-`hub toolbox`
+1. Download an install the Automation Hub CLI binary:
+
+    Mac OS:
+
+    ```console
+    curl -O https://controlplane.agilestacks.io/dist/hub-cli/hub.darwin_amd64
+    mv hub.darwin_amd64 hub
+    chmod +x hub
+    sudo mv hub /usr/local/bin
+    ```
+
+    Linux:
+
+    ```console
+    curl -O https://controlplane.agilestacks.io/dist/hub-cli/hub.linux_amd64
+    mv hub.linux_amd64 hub
+    chmod +x hub
+    sudo mv hub /usr/local/bin
+    ```
+
+2. `git clone` and `cd` into the template directory. Install Automation Hub CLI extensions using `hub extensions install`
+3. Run `toolbox` Docker image that contains all required tools for provisioning (AWS CLI, Terraform, kubectl, Helm, etc.): `hub toolbox`.
 
     *NOTE: You can deploy the stack without the `toolbox`, however in this case all required tools (with correct versions) must be installed on your workstation. Please refer to [Toolbox repo in GitHub](https://github.com/agilestacks/toolbox) to see what tools are required to deploy our stacks.*
 
-3. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ls` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones (from your local Kubeconfig) are not:
+4. Before Stack Template can be deployed to your cluster you need to create an initial Agile Stacks Configuration. `hub ls` command displays which of your Kubernetes clusters are already configured to work with Agile Stacks automation and which ones (from your local Kubeconfig) are not:
 
     ```console
     hub ls
@@ -58,7 +76,7 @@ You can use the following command to create a cluster: `eksctl create cluster -f
     user@qa.eu-north-1.eksctl.io
     ```
 
-4. Run `hub configure -p <kube context name>` to create Agile Stacks configuration for the given cluster. (*It is required to later deploy a stack template using `hub ext deploy`*) .Example:
+5. Run `hub configure -p <kube context name>` to create Agile Stacks configuration for the given cluster. (*It is required to later deploy a stack template using `hub ext deploy`*) .Example:
 
     ```console
     hub configure -p user@dev.eu-north-1.eksctl.io
@@ -75,13 +93,13 @@ You can use the following command to create a cluster: `eksctl create cluster -f
 
     *NOTE: `waiting-moose-859.devops.delivery` is a randomly generated name of your Agile Stacks platform. In the meantime, it will become a top-level domain for all the components (from the stack template) that require DNS (such as Traefik, etc.)*
 
-5. Run `hub ext deploy` to deploy the stack template (with External DNS, Cert Manager, and Traefik). The components will be deployed in the order specified in [hub.yaml](hub.yaml) file. Parameters of the stack (such as DNS prefix for Traefik, etc.) are in [params.yaml](params.yaml) file.
+6. Run `hub ext deploy` to deploy the stack template (with External DNS, Cert Manager, and Traefik). The components will be deployed in the order specified in [hub.yaml](hub.yaml) file. Parameters of the stack (such as DNS prefix for Traefik, etc.) are in [params.yaml](params.yaml) file.
 
     *More information about Agile Stacks Superhub deployment manifests, lifecycle and parameters are available [here](https://docs.agilestacks.com/article/zncz3d0zmb-manifest)*
 
     **NOTE: The template deploys fast, however it takes time for the components to provision DNS records and issue TLS certificates.**
 
-6. Once stack is deployed, stack parameters and outputs can be discovered using `hub show -s <platform name> -c <component name>` command. Example, show outputs of `Traefik` component (`jq '.outputs'` filters out outputs only):
+7. Once stack is deployed, stack parameters and outputs can be discovered using `hub show -s <platform name> -c <component name>` command. Example, show outputs of `Traefik` component (`jq '.outputs'` filters out outputs only):
 
     ```console
     hub show -s waiting-moose-859.devops.delivery -c traefik | jq '.outputs'
@@ -100,7 +118,7 @@ You can use the following command to create a cluster: `eksctl create cluster -f
 
     Using the `hub show` command above we discovered that URL of the Traefik dashboard is `https://apps.waiting-moose-859.devops.delivery/dashboard/`
 
-7. Run `hub ext undeploy` to undeploy the stack template
+8. Run `hub ext undeploy` to undeploy the stack template
 
 ### Useful features
 
